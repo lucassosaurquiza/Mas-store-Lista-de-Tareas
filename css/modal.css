@@ -1,0 +1,95 @@
+.modal {
+  /* la capa que oscurece todo */
+  position: fixed;
+  inset: 0;
+  /* top:0 right:0 bottom:0 left:0 */
+  background: rgba(0, 0, 0, 0.55);
+  /* negro semitransparente */
+  display: flex;
+  /* centra el contenido */
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  /* encima de todo */
+  /* transición opcional */
+  opacity: 0;
+  pointer-events: none;
+  /* que no capture clics estando oculto */
+  transition: opacity 0.3s ease;
+}
+
+.modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-close {
+  color: #2196f3;
+  background: none;
+  border: none;
+  font-size: x-large;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-close-container{
+  justify-content: end;
+  display: flex;
+}
+
+.modal-content {
+  max-width: 800px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  background-color: #fff;
+}
+
+.modal-title {
+  color: black;
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 1rem;
+}
+
+.modal-label {
+  color: black;
+  font-size: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.modal-input {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.modal-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-button {
+  background: #2196f3;
+  color: #fff;
+  border: 0;
+  max-width: 150px;
+  padding: 15px;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.modal-button-group {
+  justify-content: center;
+  display: flex;
+}

@@ -1,0 +1,52 @@
+/* contenedor principal */
+.container { display:flex; justify-content:center; margin-top:2rem; }
+
+/* tabla */
+.table {
+  border-collapse: collapse;
+  font-family: system-ui, sans-serif;
+  min-width: 600px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
+}
+
+.table-header th {
+  background:#0077c8;      /* azul marca */
+  color:#fff;
+  padding:0.75rem 1rem;
+  text-align:left;
+  font-weight:600;
+  letter-spacing:.5px;
+}
+
+.table-body td {
+  padding:0.65rem 1rem;
+  border-bottom:1px solid #e5e7eb;
+  background:#fff;
+  color: black;
+  font-size: large;
+}
+
+/* zebra effect */
+.table-body tr:nth-child(even) td { background:#f9fafb; }
+
+/* estado: centra y da aire */
+.estado-checkbox {
+  transform: scale(1.1);
+  cursor:pointer;
+}
+
+/* tarea completada */
+.done { text-decoration:line-through; color:#6b7280; }
+
+/* botón eliminar */
+.delete-button {
+  background:#e11d48;
+  color:#fff;
+  border:none;
+  padding:.35rem .65rem;
+  border-radius:4px;
+  cursor:pointer;
+  font-size:.9rem;
+  transition:background .2s;
+}
+.delete-button:hover { background:#be123c; }

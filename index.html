@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <link rel="stylesheet" href="/css/table.css">
+  <title>Tareas Mas Store</title>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <div class="box-button">
+        <button id="button" class="button-new">Crear Tarea</button>
+      </div>
+    </nav>
+  </header>
+  <main>
+
+    <section class="modal" id="taskModal" hidden>
+      <div class="modal-content">
+        <div class="modal-close-container">
+          <button class="modal-close" id="closeModal">X</button>
+        </div>
+        <h2 class="modal-title">Crea una tarea</h2>
+        <form class="modal-form" id="taskForm">
+          <div class="modal-input-group">
+            <label for="taskDescription" class="modal-label">Nombre:</label>
+            <input id="taskName" type="text" required />
+          </div>
+
+          <div class="modal-input-group">
+            <label for="taskDescription" class="modal-label">Descripción:</label>
+            <input id="taskDescription" type="text" required />
+          </div>
+
+          <div class="modal-input-group">
+            <label for="taskDate" class="modal-label">Fecha:</label>
+            <input id="taskDate" type="date" required />
+          </div>
+
+          <div class="modal-button-group">
+            <button id="button-add" class="modal-button" type="submit">Agregar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="container">
+      <table class="table">
+        <thead class="table-header">
+          <tr class="table-row">
+            <th class="table-title">Estado</th>
+            <th class="table-title">Nombre</th>
+            <th class="table-title">Descripcion</th>
+            <th class="table-title">Fecha</th>
+            <th class="table-title">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="table-body" id="task-body">
+
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script type="module" src="index.js"></script>
+</body>
+
+</html>

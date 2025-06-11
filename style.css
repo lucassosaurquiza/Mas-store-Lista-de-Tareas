@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---- Variables de color y fuente ---- */
+:root {
+    --bg: white;
+    /* negro profundo */
+    --fg: #ffffff;
+    /* texto blanco */
+    --accent: #4fc3f7;
+    /* celeste botón hover */
+    --radius: 6px;
+    --font-ui: "Inter", system-ui, sans-serif;
+}
+
+
+body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-ui);
+    line-height: 1.45;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: #0288d1;
+    color: black;
+    padding: 10px;
+    text-align: start;
+}
+
+.box-button {
+    height: 100%;
+}
+
+/* Botón base (puedes ajustar colores y paddings) */
+.button-new {
+    background: #2196f3;
+    color: #fff;
+    border: 0;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.button:hover {
+    background-color: #4fc3f7;
+    /* tono más claro */
+    animation: slowInOut 3s ease-in-out infinite alternate;
+}
+
+/* Keyframes: combina opacidad y escala */
+@keyframes slowInOut {
+    0% {
+        transform: scale(0.94);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.06);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.94);
+        opacity: 0.6;
+    }
+}
