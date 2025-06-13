@@ -50,3 +50,11 @@
   transition:background .2s;
 }
 .delete-button:hover { background:#be123c; }
+
+/* Verde suave tipo “completado” */
+.fila-completada td {
+  background-color:#d1e7dd !important;   /* fondo verde */
+  color:#0f5132;                          /* texto verde oscuro */
+  text-decoration:line-through;           /* tachado opcional */
+}
+

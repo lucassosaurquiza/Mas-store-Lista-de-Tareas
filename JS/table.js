@@ -1,36 +1,49 @@
 
 // 1- Creamos 2 variables, una para almacenar las tareas y otra para el cuerpo de la tabla
-const tareas = [];
+const LLAVE_TAREAS = 'tareas';
+const tareas = cargarTareas();
 let tareaCuerpo;
 
 // 2- Creamos una función para renderizar la tabla
 export function iniciarTabla(selector = '#task-body') {
   tareaCuerpo = document.querySelector(selector);
-  if (tareaCuerpo) render();
+  render();
 }
 
 // 3- Creamos una funcion para agregar tareas a la tabla
 export function agregarTarea(nombre, descripcion, fecha) {
-  tareas.push({
+  tareas.unshift({
     nombre,
     descripcion,
     fecha,
     completada: false
   });
+  guardarTareas()
   render();
 }
 
+function cargarTareas() {
+  try {
+    return JSON.parse(localStorage.getItem(LLAVE_TAREAS)) || [];
+  } catch {
+    return [];
+  }
+}
+
+
 export function guardarTareas() {
-  localStorage.setItem('tareas', JSON.stringify(tareas));
+  localStorage.setItem(LLAVE_TAREAS, JSON.stringify(tareas));
 }
 
 // 4- Creamos una funcion para eliminar tareas de la tabla
 export function eliminarTarea(index) {
   tareas.splice(index, 1);
+  guardarTareas();
   render();
 }
 
 // 5- Creamos una funcion para renderizar la tabla
+
 function render() {
   if (!tareaCuerpo) return;
   tareaCuerpo.innerHTML = '';
@@ -38,28 +51,39 @@ function render() {
   tareas.forEach((tarea, index) => {
     const fila = document.createElement('tr');
 
+    // 👇  si está completada, agregamos la clase verde
+    if (tarea.completada) fila.classList.add('fila-completada');
+
     fila.innerHTML = `
-        <td class="table-data">
+      <td>
         <input type="checkbox"
                class="estado-checkbox"
                data-index="${index}"
                ${tarea.completada ? 'checked' : ''}>
       </td>
-      <td class="table-data"> ${tarea.nombre}</td>
-      <td class="table-data ${tarea.completada ? 'done' : ''}">
-        ${tarea.descripcion}
-      </td>
-      <td class="table-data">${tarea.fecha}</td>
-      <td class="table-data">
-        <button class="delete-button" data-index="${index}">🗑</button>
-      </td>`;
+      <td>${tarea.nombre}</td>
+      <td>${tarea.descripcion}</td>
+      <td>${tarea.fecha}</td>
+      <td><button class="delete-button" data-index="${index}">🗑</button></td>
+    `;
     tareaCuerpo.appendChild(fila);
   });
 }
 
-// 6- Añadimos un solo evento al documento para manejar los clics en los botones de eliminar
-document.addEventListener('click', evento => {
-  if (evento.target.matches('.delete-button')) {
-    eliminarTarea(evento.target.dataset.index);
+// Delegación de eventos
+document.addEventListener('click', e => {
+  if (e.target.matches('.delete-button')) eliminarTarea(e.target.dataset.index);
+});
+
+document.addEventListener('change', e => {
+  if (e.target.matches('.estado-checkbox')) {
+    const fila = e.target.closest('tr');
+    const i = Number(e.target.dataset.index);
+
+    tareas[i].completada = e.target.checked;
+    guardarTareas();
+
+    // 👉  activamos o quitamos la clase en caliente
+    fila.classList.toggle('fila-completada', e.target.checked);
   }
-})
+});
